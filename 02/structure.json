@@ -1,0 +1,66 @@
+{
+    "type": "div",
+    "key": null,
+    "ref": null,
+    "props": {
+        "id": "d1",
+        "children": [
+            {
+                "type": "div",
+                "key": null,
+                "ref": null,
+                "props": {
+                    "id": "dd1",
+                    "children": [
+                        {
+                            "type": "div",
+                            "key": null,
+                            "ref": null,
+                            "props": {
+                                "id": "ddd1",
+                                "children": "div-ddd1"
+                            },
+                            "_owner": null,
+                            "_store": {}
+                        },
+                        {
+                            "type": "div",
+                            "key": null,
+                            "ref": null,
+                            "props": {
+                                "id": "ddd2",
+                                "children": "div-ddd2"
+                            },
+                            "_owner": null,
+                            "_store": {}
+                        }
+                    ]
+                },
+                "_owner": null,
+                "_store": {}
+            },
+            {
+                "type": "div",
+                "key": null,
+                "ref": null,
+                "props": {
+                    "id": "dd2"
+                },
+                "_owner": null,
+                "_store": {}
+            },
+            {
+                "type": "span",
+                "key": null,
+                "ref": null,
+                "props": {
+                    "id": "ss1"
+                },
+                "_owner": null,
+                "_store": {}
+            }
+        ]
+    },
+    "_owner": null,
+    "_store": {}
+}
