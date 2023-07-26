@@ -1,9 +1,10 @@
 function createElement(type, props, ...child) {
+  console.log("child", child);
   return {
     type,
     props: {
       ...props,
-      children: child.props?.map((item) =>
+      childA: child.map((item) =>
         typeof item === "string"
           ? {
               type: "HostText",
@@ -32,7 +33,10 @@ class AReactControl {
   }
 
   renderItem(parent, source) {
-    const target = document.createElement(source.type);
+    const target =
+      source.type === "HostText"
+        ? document.createTextNode()
+        : document.createElement(source.type);
 
     //设置属性
     Object.keys(source.props ?? Object)
@@ -40,7 +44,7 @@ class AReactControl {
       .map((key) => (target[key] = source.props[key]));
 
     //处理children
-    source.props?.children?.map((item) => this.renderItem(target, item));
+    source.props?.childA?.map((item) => this.renderItem(target, item));
 
     parent.appendChild(target);
   }
