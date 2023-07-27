@@ -106,14 +106,14 @@ class AReactControl {
   render(source) {
     // this.renderItem(this.container, source);
 
-    this.root.current = {
-      alternate: {
-        stateNode: this.root.containerInfo, // document.createElement("div");
-        props: {
-          childB: [source], //ele
-        },
-      },
-    };
+    // this.root.current = {
+    //   alternate: {
+    //     stateNode: this.root.containerInfo, // document.createElement("div");
+    //     props: {
+    //       childB: [source], //ele
+    //     },
+    //   },
+    // };
 
     console.log("root", JSON.stringify(this.root?.current.stateNode));
 
