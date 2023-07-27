@@ -10,7 +10,7 @@ function createElement(type, props, ...child) {
               type: "HostText",
               props: {
                 nodeValue: item,
-                children: [],
+                childA: [],
               },
             }
           : item
