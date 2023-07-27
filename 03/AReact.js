@@ -18,10 +18,6 @@ function createElement(type, props, ...child) {
   };
 }
 
-function createRoot(par) {
-  return new AReactControl(par);
-}
-
 let workInProgress = null; //当前渲染的Fiber节点
 let workInProgressRoot = null;
 
@@ -47,6 +43,7 @@ function getNextFiber(fiber) {
   return null;
 }
 
+// workInProgress === document.createElement("div");
 function profromUnitOfWork(workInProgress) {
   // 处理当前fiber 1.创建dom  2.绑定属性  3.children
   if (workInProgress.stateNode) {
@@ -64,6 +61,7 @@ function profromUnitOfWork(workInProgress) {
   }
 
   //插入fiber节点
+  console.log("workInProgress.return", workInProgress.return);
   if (workInProgress.return) {
     workInProgress.return.stateNode?.appendChild(workInProgress.stateNode);
   }
@@ -78,8 +76,9 @@ function profromUnitOfWork(workInProgress) {
       return: workInProgress,
     };
 
+    //创建节点 如果是第一个直接插入child 如果是其他插入child的sibling
     if (index === 0) {
-      workInProgress.child = newFiber;
+      workInProgress.childB = newFiber;
     } else {
       previouSibling.sibling = newFiber;
     }
@@ -90,13 +89,18 @@ function profromUnitOfWork(workInProgress) {
   return getNextFiber(workInProgress);
 }
 
+function createRoot(par) {
+  return new AReactControl(par);
+}
+
 class AReactControl {
   root = null;
   constructor(container) {
-    this.root = {
-      current: null,
-      containerInfo: container,
-    };
+    // this.root = {
+    //   current: null,
+    //   containerInfo: container,
+    // };
+    this.container = container;
   }
 
   render(source) {
@@ -104,9 +108,9 @@ class AReactControl {
 
     this.root.current = {
       alternate: {
-        stateNode: this.root.containerInfo,
+        stateNode: this.root.containerInfo, // document.createElement("div");
         props: {
-          childB: [source],
+          childB: [source], //ele
         },
       },
     };
@@ -114,8 +118,9 @@ class AReactControl {
     console.log("root", JSON.stringify(this.root?.current.stateNode));
 
     workInProgressRoot = this.root;
-    workInProgress = workInProgressRoot.current.alternate;
-    setTimeout(workloop);
+    // workInProgress = workInProgressRoot.current.alternate;
+    workInProgress = this.container;
+    setTimeout(workloop, 1000);
   }
 }
 
